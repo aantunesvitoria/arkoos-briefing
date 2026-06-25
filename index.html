@@ -1,0 +1,1545 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Briefing de Projeto — Arkoos Arquitetura e Interiores</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap');
+
+  :root {
+    --vinho: #481210;
+    --oliva: #857B4A;
+    --amarelo: #FCA814;
+    --terracota: #AD4112;
+    --rosa: #B55C5E;
+    --marrom: #44271F;
+    --preto: #000000;
+    --off-white: #F6F6F6;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--off-white);
+    color: var(--preto);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--vinho);
+    padding: 56px 48px 48px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -80px; right: -80px;
+    width: 320px; height: 320px;
+    border-radius: 50%;
+    background: rgba(252,168,20,0.08);
+    pointer-events: none;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--terracota), var(--amarelo), var(--oliva));
+  }
+
+  .logo-area {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+
+  /* SVG logo inline — letras arkoos com tagline */
+  .logo-svg {
+    height: 52px;
+    width: auto;
+    max-width: 100%;
+  }
+
+  .hero-copy {
+    max-width: 600px;
+  }
+
+  .eyebrow {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--amarelo);
+    margin-bottom: 14px;
+  }
+
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(32px, 5vw, 52px);
+    line-height: 1.12;
+    color: var(--off-white);
+    margin-bottom: 18px;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--amarelo);
+  }
+
+  .hero p {
+    font-size: 14px;
+    font-weight: 300;
+    color: rgba(246,246,246,0.72);
+    line-height: 1.7;
+    max-width: 480px;
+  }
+
+  /* ── FORM SHELL ── */
+  .form-wrapper {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 0 24px 80px;
+  }
+
+  /* ── SECTIONS ── */
+  .section {
+    margin-top: 56px;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 28px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid rgba(68,39,31,0.15);
+  }
+
+  .section-icon {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: var(--vinho);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .section-icon svg {
+    width: 16px; height: 16px;
+    stroke: var(--amarelo);
+    fill: none;
+    stroke-width: 1.6;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 1.15;
+    color: var(--vinho);
+  }
+
+  /* ── GRID ── */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+  .col-span-2 { grid-column: span 2; }
+  .col-span-3 { grid-column: span 3; }
+
+  @media (max-width: 640px) {
+    .grid-2, .grid-3 { grid-template-columns: 1fr; }
+    .col-span-2, .col-span-3 { grid-column: span 1; }
+    .hero { padding: 40px 24px 36px; }
+    .form-wrapper { padding: 0 18px 64px; }
+    .section { margin-top: 44px; }
+  }
+
+  /* ── FIELD ── */
+  .field { display: flex; flex-direction: column; gap: 6px; }
+
+  label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--marrom);
+  }
+
+  label .obrig {
+    color: var(--terracota);
+    margin-left: 2px;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  input[type="number"],
+  input[type="url"],
+  select,
+  textarea {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--preto);
+    background: #fff;
+    border: 1px solid rgba(68,39,31,0.2);
+    border-radius: 4px;
+    padding: 12px 14px;
+    width: 100%;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    resize: none;
+  }
+
+  input:focus, select:focus, textarea:focus {
+    border-color: var(--oliva);
+    box-shadow: 0 0 0 3px rgba(133,123,74,0.12);
+  }
+
+  select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23857B4A' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; padding-right: 36px; cursor: pointer; }
+
+  textarea { min-height: 100px; }
+
+  /* ── CHECKBOX / RADIO GROUPS ── */
+  .check-group, .radio-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 4px;
+  }
+
+  .check-group label, .radio-group label {
+    text-transform: none;
+    letter-spacing: 0;
+    font-size: 13px;
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    background: #fff;
+    border: 1px solid rgba(68,39,31,0.2);
+    border-radius: 4px;
+    padding: 9px 14px;
+    transition: border-color 0.15s, background 0.15s;
+    color: var(--preto);
+    max-width: 100%;
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+
+  .check-group input[type="checkbox"],
+  .radio-group input[type="radio"] {
+    width: 15px; height: 15px;
+    accent-color: var(--vinho);
+    flex-shrink: 0;
+  }
+
+  .check-group label:has(input:checked),
+  .radio-group label:has(input:checked) {
+    border-color: var(--oliva);
+    background: rgba(133,123,74,0.07);
+  }
+
+  /* ── DIVIDER ── */
+  .divider {
+    height: 1px;
+    background: linear-gradient(90deg, var(--terracota), transparent);
+    margin: 48px 0 0;
+    opacity: 0.3;
+  }
+
+  /* ── NOTA INFO ── */
+  .nota {
+    background: rgba(252,168,20,0.08);
+    border-left: 3px solid var(--amarelo);
+    border-radius: 0 4px 4px 0;
+    padding: 14px 18px;
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--marrom);
+    margin-bottom: 24px;
+  }
+
+  /* ── SUBMIT ── */
+  .submit-area {
+    margin-top: 56px;
+    text-align: center;
+    padding-top: 32px;
+    border-top: 1px solid rgba(68,39,31,0.12);
+  }
+
+  .submit-area p {
+    font-size: 13px;
+    color: rgba(68,39,31,0.6);
+    margin-bottom: 24px;
+    line-height: 1.6;
+  }
+
+  button[type="button"]#btn-enviar {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #fff;
+    background: var(--vinho);
+    border: none;
+    border-radius: 4px;
+    padding: 16px 48px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.2s;
+    max-width: 100%;
+    white-space: normal;
+  }
+
+  button[type="button"]#btn-enviar:hover { background: var(--marrom); }
+
+  button[type="button"]#btn-enviar::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--amarelo);
+  }
+
+  /* ── FOOTER ── */
+  .form-footer {
+    margin-top: 40px;
+    text-align: center;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(68,39,31,0.4);
+    line-height: 1.7;
+  }
+
+  /* ── SCALE STARS ── */
+  .scale-row {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    background: #fff;
+    border: 1px solid rgba(68,39,31,0.2);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .scale-row label {
+    flex: 1;
+    text-align: center;
+    padding: 11px 6px;
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 0;
+    text-transform: none;
+    cursor: pointer;
+    border-right: 1px solid rgba(68,39,31,0.1);
+    transition: background 0.15s;
+  }
+
+  .scale-row label:last-child { border-right: none; }
+  .scale-row input[type="radio"] { display: none; }
+  .scale-row label:has(input:checked) {
+    background: var(--vinho);
+    color: var(--off-white);
+  }
+  .scale-row label:hover:not(:has(input:checked)) { background: rgba(133,123,74,0.08); }
+
+  /* ── BLOCOS DE AMBIENTE ── */
+  .ambiente-bloco {
+    margin-bottom: 40px;
+    border: 1px solid rgba(68,39,31,0.12);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  .ambiente-titulo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    color: var(--off-white);
+    background: var(--marrom);
+    padding: 12px 20px;
+  }
+
+  .ambiente-bloco .grid-2 {
+    padding: 24px 20px;
+    background: #fff;
+  }
+
+  @media (max-width: 640px) {
+    .logo-area { margin-bottom: 32px; }
+    .logo-svg { height: auto; width: min(100%, 260px); }
+    .hero h1 { font-size: clamp(31px, 10vw, 40px); }
+    .hero p { font-size: 13px; }
+    .section-header { align-items: flex-start; gap: 12px; margin-bottom: 22px; }
+    .section-icon { width: 32px; height: 32px; }
+    .section-title { font-size: 20px; }
+    label { line-height: 1.35; }
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="number"],
+    input[type="url"],
+    select,
+    textarea {
+      font-size: 16px;
+      padding: 12px;
+    }
+    .check-group,
+    .radio-group {
+      gap: 8px;
+    }
+    .check-group label,
+    .radio-group label {
+      width: 100%;
+      padding: 10px 12px;
+      align-items: flex-start;
+    }
+    .scale-row {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+    }
+    .scale-row label {
+      min-width: 0;
+      padding: 11px 2px;
+      font-size: 12px;
+    }
+    .ambiente-bloco { margin-bottom: 28px; }
+    .ambiente-titulo { padding: 12px 16px; }
+    .ambiente-bloco .grid-2 { padding: 20px 16px; }
+    .submit-area { margin-top: 44px; padding-top: 28px; }
+    button[type="button"]#btn-enviar {
+      width: 100%;
+      padding: 15px 18px;
+      line-height: 1.35;
+    }
+    #modal-overlay {
+      padding: 18px;
+      overflow-y: auto;
+    }
+    #modal-overlay > div {
+      width: 100% !important;
+      padding: 34px 22px !important;
+      margin: auto 0;
+    }
+  }
+
+  @media (max-width: 380px) {
+    .hero { padding: 36px 18px 32px; }
+    .form-wrapper { padding-left: 14px; padding-right: 14px; }
+    .hero h1 { font-size: 30px; }
+    .section-title { font-size: 19px; }
+    .nota { padding: 12px 14px; }
+    .scale-row small { font-size: 9px !important; }
+  }
+
+  /* Modern scroll reveal */
+  body.reveal-enabled .scroll-reveal {
+    opacity: 0;
+    transform: translateY(34px);
+    filter: blur(6px);
+    transition:
+      opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.75s cubic-bezier(0.22, 1, 0.36, 1),
+      filter 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+    transition-delay: var(--reveal-delay, 0ms);
+    will-change: opacity, transform, filter;
+  }
+
+  body.reveal-enabled .scroll-reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+
+  body.reveal-enabled .hero.scroll-reveal {
+    transform: translateY(0) scale(0.985);
+  }
+
+  body.reveal-enabled .hero.scroll-reveal.is-visible {
+    transform: translateY(0) scale(1);
+  }
+
+  body.reveal-enabled .section.scroll-reveal > .section-header,
+  body.reveal-enabled .section.scroll-reveal > .nota,
+  body.reveal-enabled .section.scroll-reveal > .grid-2 > .field,
+  body.reveal-enabled .section.scroll-reveal > .grid-3 > .field {
+    opacity: 0;
+    transform: translateY(18px);
+    transition:
+      opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  body.reveal-enabled .section.scroll-reveal.is-visible > .section-header,
+  body.reveal-enabled .section.scroll-reveal.is-visible > .nota,
+  body.reveal-enabled .section.scroll-reveal.is-visible > .grid-2 > .field,
+  body.reveal-enabled .section.scroll-reveal.is-visible > .grid-3 > .field {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: calc(var(--reveal-delay, 0ms) + 110ms);
+  }
+
+  body.reveal-enabled .section.scroll-reveal.is-visible > .grid-2 > .field:nth-child(2n),
+  body.reveal-enabled .section.scroll-reveal.is-visible > .grid-3 > .field:nth-child(2n) {
+    transition-delay: calc(var(--reveal-delay, 0ms) + 170ms);
+  }
+
+  body.reveal-enabled .section.scroll-reveal.is-visible > .grid-2 > .field:nth-child(3n),
+  body.reveal-enabled .section.scroll-reveal.is-visible > .grid-3 > .field:nth-child(3n) {
+    transition-delay: calc(var(--reveal-delay, 0ms) + 230ms);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    body.reveal-enabled .scroll-reveal,
+    body.reveal-enabled .section.scroll-reveal > .section-header,
+    body.reveal-enabled .section.scroll-reveal > .nota,
+    body.reveal-enabled .section.scroll-reveal > .grid-2 > .field,
+    body.reveal-enabled .section.scroll-reveal > .grid-3 > .field {
+      opacity: 1;
+      transform: none;
+      filter: none;
+      transition: none;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══ HERO ═══ -->
+<header class="hero">
+  <div class="logo-area">
+    <svg class="logo-svg" viewBox="0 0 460 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- "arkoos" -->
+      <text x="0" y="68" font-family="'Cormorant Garamond', serif" font-size="80" font-weight="300" fill="#F6F6F6" letter-spacing="-2">arkoos</text>
+      <!-- tagline -->
+      <text x="2" y="86" font-family="'DM Sans', sans-serif" font-size="13" font-weight="300" fill="rgba(246,246,246,0.55)" letter-spacing="3">Arquitetura e Interiores</text>
+    </svg>
+  </div>
+  <div class="hero-copy">
+    <p class="eyebrow">Formulário de Briefing</p>
+    <h1>Conte-nos sobre o seu<br><em>projeto dos sonhos</em></h1>
+    <p>Cada resposta nos ajuda a criar um projeto mais preciso, alinhado à sua vida e ao seu estilo. Reserve de 10 a 15 minutos para preencher com calma — quanto mais detalhes, melhor o resultado.</p>
+  </div>
+</header>
+
+<!-- ═══ FORM ═══ -->
+<div class="form-wrapper">
+<form>
+
+  <!-- 1. DADOS DO CLIENTE -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+      </div>
+      <h2 class="section-title">Dados do Cliente</h2>
+    </div>
+
+    <div class="grid-2">
+      <div class="field">
+        <label>Nome completo <span class="obrig">*</span></label>
+        <input type="text" placeholder="Seu nome">
+      </div>
+      <div class="field">
+        <label>Como prefere ser chamado(a)?</label>
+        <input type="text" placeholder="Apelido ou primeiro nome">
+      </div>
+      <div class="field">
+        <label>E-mail <span class="obrig">*</span></label>
+        <input type="email" placeholder="seu@email.com">
+      </div>
+      <div class="field">
+        <label>Telefone / WhatsApp <span class="obrig">*</span></label>
+        <input type="tel" placeholder="(21) 99999-9999">
+      </div>
+      <div class="field">
+        <label>Instagram (opcional)</label>
+        <input type="text" placeholder="@seuuser">
+      </div>
+      <div class="field">
+        <label>Como nos conheceu?</label>
+        <select>
+          <option value="">Selecione</option>
+          <option>Instagram</option>
+          <option>Indicação de amigo ou familiar</option>
+          <option>Indicação de outro profissional</option>
+          <option>Google</option>
+          <option>Hoobii / plataforma de projetos</option>
+          <option>Evento ou exposição</option>
+          <option>Outro</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- 2. O IMÓVEL -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon">
+        <svg viewBox="0 0 24 24"><path d="M3 12l9-9 9 9"/><path d="M5 10v9h14v-9"/><rect x="9" y="14" width="6" height="7"/></svg>
+      </div>
+      <h2 class="section-title">O Imóvel</h2>
+    </div>
+
+    <div class="grid-2">
+      <div class="field">
+        <label>Endereço / Bairro <span class="obrig">*</span></label>
+        <input type="text" placeholder="Bairro e cidade">
+      </div>
+      <div class="field">
+        <label>Tipo de imóvel <span class="obrig">*</span></label>
+        <select>
+          <option value="">Selecione</option>
+          <option>Apartamento</option>
+          <option>Casa</option>
+          <option>Cobertura</option>
+          <option>Casa de condomínio</option>
+          <option>Escritório / Comercial</option>
+          <option>Área de lazer</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Área total aproximada (m²)</label>
+        <input type="number" placeholder="Ex: 120">
+      </div>
+      <div class="field">
+        <label>Situação atual</label>
+        <select>
+          <option value="">Selecione</option>
+          <option>Imóvel novo / na planta</option>
+          <option>Imóvel usado — com reforma</option>
+          <option>Imóvel usado — sem obra, só decoração</option>
+          <option>Em construção</option>
+        </select>
+      </div>
+      <div class="field col-span-2">
+        <label>Ambientes que serão projetados <span class="obrig">*</span></label>
+        <div class="check-group">
+          <label><input type="checkbox"> Sala de estar</label>
+          <label><input type="checkbox"> Sala de jantar</label>
+          <label><input type="checkbox"> Cozinha</label>
+          <label><input type="checkbox"> Lavanderia</label>
+          <label><input type="checkbox"> Suíte master</label>
+          <label><input type="checkbox"> Dormitório(s)</label>
+          <label><input type="checkbox"> Banheiro(s)</label>
+          <label><input type="checkbox"> Home office</label>
+          <label><input type="checkbox"> Área de lazer</label>
+          <label><input type="checkbox"> Varanda / terraço</label>
+          <label><input type="checkbox"> Corredor / circulação</label>
+          <label><input type="checkbox"> Área externa</label>
+          <label><input type="checkbox"> Imóvel completo</label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- 3. SOBRE QUEM MORA -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon">
+        <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+      </div>
+      <h2 class="section-title">Quem Mora / Usa o Espaço</h2>
+    </div>
+
+    <div class="grid-2">
+      <div class="field">
+        <label>Nº de moradores</label>
+        <input type="number" placeholder="Ex: 3">
+      </div>
+      <div class="field">
+        <label>Há crianças? Se sim, idades</label>
+        <input type="text" placeholder="Ex: 2 filhos — 4 e 8 anos">
+      </div>
+      <div class="field">
+        <label>Há animais de estimação?</label>
+        <select>
+          <option value="">Selecione</option>
+          <option>Não</option>
+          <option>Sim — cachorro(s)</option>
+          <option>Sim — gato(s)</option>
+          <option>Sim — outros</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Há pessoa com mobilidade reduzida ou necessidades especiais?</label>
+        <select>
+          <option value="">Selecione</option>
+          <option>Não</option>
+          <option>Sim — descreva abaixo</option>
+        </select>
+      </div>
+      <div class="field col-span-2">
+        <label>Rotina e hábitos do lar</label>
+        <textarea placeholder="Como é o dia a dia? Recebem visitas com frequência? Trabalham em casa? Têm hobbies que precisam de espaço específico?"></textarea>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- 4. ESTILO E REFERÊNCIAS -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon">
+        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+      </div>
+      <h2 class="section-title">Estilo e Referências Visuais</h2>
+    </div>
+
+    <div class="nota">Quanto mais referências você compartilhar — fotos, perfis do Pinterest, Instagram ou links de projetos que admira — mais preciso será o resultado. Envie também após o formulário pelo WhatsApp.</div>
+
+    <div class="grid-2">
+      <div class="field col-span-2">
+        <label>Estilos que mais te identificam <span class="obrig">*</span></label>
+        <div class="check-group">
+          <label><input type="checkbox"> Contemporâneo</label>
+          <label><input type="checkbox"> Minimalista</label>
+          <label><input type="checkbox"> Moderno clássico</label>
+          <label><input type="checkbox"> Neoclássico</label>
+          <label><input type="checkbox"> Industrial</label>
+          <label><input type="checkbox"> Escandinavo</label>
+          <label><input type="checkbox"> Japandi</label>
+          <label><input type="checkbox"> Rústico / Orgânico</label>
+          <label><input type="checkbox"> Art Déco</label>
+          <label><input type="checkbox"> Boho / Éclético</label>
+          <label><input type="checkbox"> Tropical / Natural</label>
+          <label><input type="checkbox"> Ainda não sei — quero orientação</label>
+        </div>
+      </div>
+
+      <div class="field col-span-2">
+        <label>Paleta de cores preferida</label>
+        <div class="check-group">
+          <label><input type="checkbox"> Neutros (branco, off-white, bege)</label>
+          <label><input type="checkbox"> Tons terrosos (caramelo, terracota)</label>
+          <label><input type="checkbox"> Escuros (cinza chumbo, verde musgo, azul petróleo)</label>
+          <label><input type="checkbox"> Madeiras e naturais</label>
+          <label><input type="checkbox"> Metais (dourado, cobre, bronze, preto)</label>
+          <label><input type="checkbox"> Colorido com personalidade</label>
+          <label><input type="checkbox"> Aberto a sugestões</label>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Materiais que aprecia</label>
+        <div class="check-group">
+          <label><input type="checkbox"> Madeira natural</label>
+          <label><input type="checkbox"> Mármore</label>
+          <label><input type="checkbox"> Porcelanato grande</label>
+          <label><input type="checkbox"> Concreto / Cimento</label>
+          <label><input type="checkbox"> Couro</label>
+          <label><input type="checkbox"> Linho e tecidos naturais</label>
+          <label><input type="checkbox"> Vidro e espelhos</label>
+          <label><input type="checkbox"> Metais aparentes</label>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Materiais ou elementos que NÃO quer</label>
+        <textarea placeholder="Ex: não gosto de espelhos no teto, evitar cores muito frias..."></textarea>
+      </div>
+
+      <div class="field col-span-2">
+        <label>Link de painel de referências (Pinterest, Instagram, site)</label>
+        <input type="url" placeholder="https://pinterest.com/seu-painel">
+      </div>
+
+      <div class="field col-span-2">
+        <label>Descreva em poucas palavras o ambiente que sonha ter</label>
+        <textarea placeholder="Ex: 'Quero uma sala que transmita sofisticação, mas com aconchego. Que pareça de hotel 5 estrelas, mas com a nossa personalidade.'"></textarea>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- 5. FUNCIONALIDADE E NECESSIDADES -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon">
+        <svg viewBox="0 0 24 24"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+      </div>
+      <h2 class="section-title">Funcionalidade e Necessidades Específicas</h2>
+    </div>
+
+    <div class="grid-2">
+      <div class="field col-span-2">
+        <label>O que mais te incomoda no espaço atual?</label>
+        <textarea placeholder="Falta de armários, má iluminação, ambientes sem integração, pouco espaço de armazenamento..."></textarea>
+      </div>
+      <div class="field col-span-2">
+        <label>Quais são as prioridades funcionais?</label>
+        <div class="check-group">
+          <label><input type="checkbox"> Mais armazenamento</label>
+          <label><input type="checkbox"> Melhor iluminação</label>
+          <label><input type="checkbox"> Integração de ambientes</label>
+          <label><input type="checkbox"> Privacidade</label>
+          <label><input type="checkbox"> Conforto acústico</label>
+          <label><input type="checkbox"> Automação / Smart home</label>
+          <label><input type="checkbox"> Sustentabilidade</label>
+          <label><input type="checkbox"> Acessibilidade</label>
+          <label><input type="checkbox"> Home theater</label>
+          <label><input type="checkbox"> Adega / bar</label>
+        </div>
+      </div>
+      <div class="field col-span-2">
+        <label>Há alguma peça de mobiliário ou objeto especial que precisa ser mantido?</label>
+        <textarea placeholder="Descreva itens que já possui e que farão parte do projeto."></textarea>
+      </div>
+      <div class="field col-span-2">
+        <label>Qual sensação você gostaria de ter ao entrar em casa? <span class="obrig">*</span></label>
+        <textarea placeholder="Ex: Sensação de limpeza, conforto, aconchego, sofisticação, leveza..."></textarea>
+      </div>
+      <div class="field col-span-2">
+        <label>Qual ambiente da casa vocês mais se identificam? Por quê?</label>
+        <textarea placeholder="Ex: Me identifico mais com o quarto porque me sinto mais à vontade..."></textarea>
+      </div>
+      <div class="field">
+        <label>Gostam de plantas?</label>
+        <div class="radio-group">
+          <label><input type="radio" name="plantas"> Sim</label>
+          <label><input type="radio" name="plantas"> Não</label>
+        </div>
+      </div>
+      <div class="field">
+        <label>São colecionadores de algum item?</label>
+        <div class="radio-group">
+          <label><input type="radio" name="colecionadores"> Sim — descreva abaixo</label>
+          <label><input type="radio" name="colecionadores"> Não</label>
+        </div>
+      </div>
+      <div class="field col-span-2">
+        <label>Possuem itens grandes que precisam ficar guardados? Quais?</label>
+        <textarea placeholder="Ex: Máquina de costura, equipamentos de ginástica, instrumentos musicais..."></textarea>
+      </div>
+      <div class="field col-span-2">
+        <label>Gostam de deixar algum item à mostra? (quadros, troféus, coleções, imagens religiosas...)</label>
+        <textarea placeholder="Conte o que tem significado e merece destaque no projeto."></textarea>
+      </div>
+      <div class="field">
+        <label>Há algo que gostariam de investir mais? O que seria?</label>
+        <textarea placeholder="Ex: Iluminação, marcenaria, revestimentos especiais..."></textarea>
+      </div>
+      <div class="field">
+        <label>Há algo que não é prioridade no momento?</label>
+        <textarea placeholder="O que pode ficar para uma segunda etapa?"></textarea>
+      </div>
+      <div class="field col-span-2">
+        <label>Em uma palavra, como vocês definiriam este projeto? Por quê?</label>
+        <textarea placeholder="Ex: Essencial — porque precisamos de um apartamento elaborado para comodidade e funcionalidade."></textarea>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- 5b. PETS -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon">
+        <svg viewBox="0 0 24 24"><path d="M10 5.172C10 3.782 8.423 2.679 6.5 3c-2.823.47-4.113 6.006-4 7 .08.703 1.725 1.722 3.656 1 1.261-.472 1.96-1.45 2.344-2.5"/><path d="M14.267 5.172c0-1.39 1.577-2.493 3.5-2.172 2.823.47 4.113 6.006 4 7-.08.703-1.725 1.722-3.656 1-1.261-.472-1.96-1.45-2.344-2.5"/><path d="M8 14v.5"/><path d="M16 14v.5"/><path d="M11.25 16.25h1.5L12 17l-.75-.75z"/><path d="M4.42 11.247A13.152 13.152 0 004 14.556C4 18.728 7.582 21 12 21s8-2.272 8-6.444c0-1.061-.162-2.2-.493-3.309m-9.243-6.082A8.801 8.801 0 0112 5c.78 0 1.5.108 2.161.306"/></svg>
+      </div>
+      <h2 class="section-title">Nossos Queridos Pets</h2>
+    </div>
+
+    <div class="nota">Cada detalhe sobre seus pets nos ajuda a criar um espaço que funcione para toda a família — incluindo eles!</div>
+
+    <div class="grid-2">
+      <div class="field col-span-2">
+        <label>Nome(s) e raça(s) / espécie(s)</label>
+        <input type="text" placeholder="Ex: Pandora (gata) e Fumaça (gato)">
+      </div>
+      <div class="field col-span-2">
+        <label>Como é o temperamento deles?</label>
+        <textarea placeholder="Ex: Agitado, tranquilo, territorial, medroso, brincalhão, amoroso..."></textarea>
+      </div>
+      <div class="field col-span-2">
+        <label>Precisam de local específico para dormir / caminha?</label>
+        <div class="radio-group">
+          <label><input type="radio" name="pet-dormir"> Sim, na sala</label>
+          <label><input type="radio" name="pet-dormir"> Sim, no quarto casal</label>
+          <label><input type="radio" name="pet-dormir"> Sim, em outro quarto</label>
+          <label><input type="radio" name="pet-dormir"> Não precisa — dorme na cama/sofá</label>
+        </div>
+      </div>
+      <div class="field">
+        <label>Precisam de espaço para brincar?</label>
+        <div class="radio-group">
+          <label><input type="radio" name="pet-brincar"> Sim</label>
+          <label><input type="radio" name="pet-brincar"> Não</label>
+        </div>
+      </div>
+      <div class="field">
+        <label>Soltam muito pelo?</label>
+        <div class="radio-group">
+          <label><input type="radio" name="pet-pelo"> Sim</label>
+          <label><input type="radio" name="pet-pelo"> Não</label>
+        </div>
+      </div>
+      <div class="field">
+        <label>Têm livre acesso a todos os ambientes?</label>
+        <div class="radio-group">
+          <label><input type="radio" name="pet-acesso"> Sim</label>
+          <label><input type="radio" name="pet-acesso"> Não — descreva abaixo</label>
+        </div>
+      </div>
+      <div class="field">
+        <label>Já riscou portas, rodapés ou marcenaria?</label>
+        <div class="radio-group">
+          <label><input type="radio" name="pet-risco"> Sim</label>
+          <label><input type="radio" name="pet-risco"> Não</label>
+        </div>
+      </div>
+      <div class="field col-span-2">
+        <label>Onde ficam os potes de água e ração?</label>
+        <input type="text" placeholder="Ex: Na sala, pretendemos deixar na varanda do novo apê...">
+      </div>
+      <div class="field col-span-2">
+        <label>Tapete higiênico / caixa de areia — onde preferem que fique?</label>
+        <div class="radio-group">
+          <label><input type="radio" name="pet-tapete"> Banheiro</label>
+          <label><input type="radio" name="pet-tapete"> Varanda</label>
+          <label><input type="radio" name="pet-tapete"> Área de serviço</label>
+          <label><input type="radio" name="pet-tapete"> Quarto específico</label>
+          <label><input type="radio" name="pet-tapete"> Não se aplica</label>
+        </div>
+      </div>
+      <div class="field col-span-2">
+        <label>Caso não seja possível instalar cortina de vidro, há preocupação com grades/telas?</label>
+        <textarea placeholder="Ex: Sim, pretendemos tela na varanda..."></textarea>
+      </div>
+      <div class="field col-span-2">
+        <label>Como eles reagem quando recebem visitas?</label>
+        <textarea placeholder="Ex: Um se esconde, o outro fica no ambiente mas sem interagir..."></textarea>
+      </div>
+      <div class="field col-span-2">
+        <label>Pretendem aumentar a família (mais pets)?</label>
+        <div class="radio-group">
+          <label><input type="radio" name="pet-aumentar"> Sim</label>
+          <label><input type="radio" name="pet-aumentar"> Não</label>
+          <label><input type="radio" name="pet-aumentar"> Talvez</label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- 5c. POR AMBIENTE -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon">
+        <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      </div>
+      <h2 class="section-title">Detalhes por Ambiente</h2>
+    </div>
+
+    <div class="nota">Responda apenas os ambientes que fazem parte do seu projeto. Quanto mais detalhes, mais personalizado será o resultado.</div>
+
+    <!-- SALA -->
+    <div class="ambiente-bloco">
+      <div class="ambiente-titulo">Sala</div>
+      <div class="grid-2">
+        <div class="field col-span-2">
+          <label>Descreva o sofá ideal</label>
+          <textarea placeholder="Ex: Com braços finos, que vire cama, confortável, em linho ou veludo..."></textarea>
+        </div>
+        <div class="field col-span-2">
+          <label>TV da sala — já tem ou vai comprar? Qual polegada / marca pretendida?</label>
+          <textarea placeholder="Ex: Ainda vamos comprar — aceitamos sugestões de tamanho."></textarea>
+        </div>
+        <div class="field">
+          <label>Gostam de tapete na sala?</label>
+          <div class="radio-group">
+            <label><input type="radio" name="sala-tapete"> Sim</label>
+            <label><input type="radio" name="sala-tapete"> Não</label>
+          </div>
+        </div>
+        <div class="field">
+          <label>Gostam de quadros na sala?</label>
+          <div class="radio-group">
+            <label><input type="radio" name="sala-quadros"> Sim</label>
+            <label><input type="radio" name="sala-quadros"> Não</label>
+          </div>
+        </div>
+        <div class="field col-span-2">
+          <label>Marcenaria — quais ambientes da sala priorizar?</label>
+          <div class="check-group">
+            <label><input type="checkbox"> Painel TV</label>
+            <label><input type="checkbox"> Buffet / aparador</label>
+            <label><input type="checkbox"> Estante</label>
+            <label><input type="checkbox"> Bar / adega</label>
+            <label><input type="checkbox"> Não tem marcenaria prevista</label>
+          </div>
+        </div>
+        <div class="field col-span-2">
+          <label>Observações livres sobre a sala</label>
+          <textarea placeholder="Algo que queira garantir neste ambiente..."></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- QUARTO CASAL -->
+    <div class="ambiente-bloco">
+      <div class="ambiente-titulo">Quarto Casal</div>
+      <div class="grid-2">
+        <div class="field">
+          <label>Tamanho da cama</label>
+          <div class="radio-group">
+            <label><input type="radio" name="cama-casal"> Padrão (casal)</label>
+            <label><input type="radio" name="cama-casal"> Queen</label>
+            <label><input type="radio" name="cama-casal"> King</label>
+            <label><input type="radio" name="cama-casal"> Outro</label>
+          </div>
+        </div>
+        <div class="field">
+          <label>TV no quarto casal?</label>
+          <div class="radio-group">
+            <label><input type="radio" name="tv-casal"> Sim</label>
+            <label><input type="radio" name="tv-casal"> Não</label>
+          </div>
+        </div>
+        <div class="field">
+          <label>Espelho de corpo inteiro?</label>
+          <div class="radio-group">
+            <label><input type="radio" name="espelho-casal"> Sim</label>
+            <label><input type="radio" name="espelho-casal"> Não</label>
+          </div>
+        </div>
+        <div class="field">
+          <label>Tapete no quarto?</label>
+          <div class="radio-group">
+            <label><input type="radio" name="tapete-casal"> Sim</label>
+            <label><input type="radio" name="tapete-casal"> Não</label>
+          </div>
+        </div>
+        <div class="field">
+          <label>Quadros no quarto?</label>
+          <div class="radio-group">
+            <label><input type="radio" name="quadros-casal"> Sim</label>
+            <label><input type="radio" name="quadros-casal"> Não</label>
+          </div>
+        </div>
+        <div class="field">
+          <label>Espaço para guardar calçados?</label>
+          <div class="radio-group">
+            <label><input type="radio" name="calcados-casal"> Sim</label>
+            <label><input type="radio" name="calcados-casal"> Não</label>
+          </div>
+        </div>
+        <div class="field col-span-2">
+          <label>Qual sensação querem ter no quarto do casal?</label>
+          <textarea placeholder="Ex: Aconchego, conforto, sossego, romantismo..."></textarea>
+        </div>
+        <div class="field col-span-2">
+          <label>Qual o estilo musical do casal? (ajuda a captar a personalidade do ambiente)</label>
+          <input type="text" placeholder="Ex: Pagode, MPB, Jazz, Sertanejo...">
+        </div>
+        <div class="field col-span-2">
+          <label>Observações livres sobre o quarto casal</label>
+          <textarea placeholder="Algo que queira garantir neste ambiente..."></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- QUARTO(S) INDIVIDUAL/FILHO -->
+    <div class="ambiente-bloco">
+      <div class="ambiente-titulo">Quarto(s) Individual / Filho(a)</div>
+      <div class="grid-2">
+        <div class="field col-span-2">
+          <label>Nome e idade de quem vai usar o quarto</label>
+          <input type="text" placeholder="Ex: Julia, 12 anos">
+        </div>
+        <div class="field col-span-2">
+          <label>Tipo de cama</label>
+          <div class="check-group">
+            <label><input type="checkbox"> Sofá-cama</label>
+            <label><input type="checkbox"> Cama de solteiro</label>
+            <label><input type="checkbox"> Bicama</label>
+            <label><input type="checkbox"> Beliche</label>
+          </div>
+        </div>
+        <div class="field">
+          <label>Cores preferidas para o quarto</label>
+          <input type="text" placeholder="Ex: Off white, cinza e rosa...">
+        </div>
+        <div class="field">
+          <label>TV no quarto?</label>
+          <div class="radio-group">
+            <label><input type="radio" name="tv-filho"> Sim</label>
+            <label><input type="radio" name="tv-filho"> Não</label>
+          </div>
+        </div>
+        <div class="field">
+          <label>Espelho de corpo inteiro?</label>
+          <div class="radio-group">
+            <label><input type="radio" name="espelho-filho"> Sim</label>
+            <label><input type="radio" name="espelho-filho"> Não</label>
+          </div>
+        </div>
+        <div class="field">
+          <label>Tapete no quarto?</label>
+          <div class="radio-group">
+            <label><input type="radio" name="tapete-filho"> Sim</label>
+            <label><input type="radio" name="tapete-filho"> Não</label>
+          </div>
+        </div>
+        <div class="field">
+          <label>Quadros / decoração de parede?</label>
+          <div class="radio-group">
+            <label><input type="radio" name="quadros-filho"> Sim</label>
+            <label><input type="radio" name="quadros-filho"> Não</label>
+          </div>
+        </div>
+        <div class="field">
+          <label>Espaço para guardar calçados?</label>
+          <div class="radio-group">
+            <label><input type="radio" name="calcados-filho"> Sim</label>
+            <label><input type="radio" name="calcados-filho"> Não</label>
+          </div>
+        </div>
+        <div class="field col-span-2">
+          <label>Espaço de estudo / home office no quarto — o que precisa?</label>
+          <div class="check-group">
+            <label><input type="checkbox"> Mesa de estudo</label>
+            <label><input type="checkbox"> Prateleiras para livros</label>
+            <label><input type="checkbox"> Cadeira executiva</label>
+            <label><input type="checkbox"> Cadeira gamer</label>
+            <label><input type="checkbox"> Gaveteiro com rodízio</label>
+            <label><input type="checkbox"> Impressora</label>
+            <label><input type="checkbox"> Não precisa de espaço de estudo</label>
+          </div>
+        </div>
+        <div class="field">
+          <label>Computador de mesa ou notebook?</label>
+          <div class="radio-group">
+            <label><input type="radio" name="computador-filho"> Notebook</label>
+            <label><input type="radio" name="computador-filho"> Computador de mesa</label>
+            <label><input type="radio" name="computador-filho"> Não se aplica</label>
+          </div>
+        </div>
+        <div class="field">
+          <label>Qual sensação querem no quarto?</label>
+          <input type="text" placeholder="Ex: Aconchegante, criativo, relaxante...">
+        </div>
+        <div class="field">
+          <label>Qual o estilo musical / hobbie favorito de quem vai usar?</label>
+          <input type="text" placeholder="Ex: Gosta de ler, estar na natureza, videogame...">
+        </div>
+        <div class="field col-span-2">
+          <label>Observações livres sobre o quarto</label>
+          <textarea placeholder="Algo específico que queira garantir — abajour, quadro de avisos, luminária de cabeceira..."></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- COZINHA -->
+    <div class="ambiente-bloco">
+      <div class="ambiente-titulo">Cozinha</div>
+      <div class="grid-2">
+        <div class="field">
+          <label>Gostam de cozinhar?</label>
+          <div class="radio-group">
+            <label><input type="radio" name="cozinhar"> Sim</label>
+            <label><input type="radio" name="cozinhar"> Não muito</label>
+          </div>
+        </div>
+        <div class="field">
+          <label>Querem cantinho do café?</label>
+          <div class="radio-group">
+            <label><input type="radio" name="cafe"> Sim</label>
+            <label><input type="radio" name="cafe"> Não</label>
+          </div>
+        </div>
+        <div class="field col-span-2">
+          <label>Eletrodomésticos que pretendem manter</label>
+          <textarea placeholder="Ex: Geladeira atual, máquina de café..."></textarea>
+        </div>
+        <div class="field col-span-2">
+          <label>Fogão / cooktop — qual preferem?</label>
+          <div class="radio-group">
+            <label><input type="radio" name="fogao"> Cooktop</label>
+            <label><input type="radio" name="fogao"> Embutir no armário</label>
+            <label><input type="radio" name="fogao"> Fogão de piso</label>
+            <label><input type="radio" name="fogao"> Indução</label>
+          </div>
+        </div>
+        <div class="field">
+          <label>Torre quente (forno + microondas embutido)?</label>
+          <div class="radio-group">
+            <label><input type="radio" name="torre"> Sim</label>
+            <label><input type="radio" name="torre"> Não</label>
+          </div>
+        </div>
+        <div class="field">
+          <label>Exaustor / coifa de cozinha?</label>
+          <div class="radio-group">
+            <label><input type="radio" name="exaustor"> Sim</label>
+            <label><input type="radio" name="exaustor"> Não</label>
+          </div>
+        </div>
+        <div class="field">
+          <label>Filtro de água?</label>
+          <div class="radio-group">
+            <label><input type="radio" name="filtro"> Sim</label>
+            <label><input type="radio" name="filtro"> Não</label>
+          </div>
+        </div>
+        <div class="field">
+          <label>Cuba / pia — única ou dupla?</label>
+          <div class="radio-group">
+            <label><input type="radio" name="cuba"> Única</label>
+            <label><input type="radio" name="cuba"> Dupla</label>
+          </div>
+        </div>
+        <div class="field col-span-2">
+          <label>Ambientes de marcenaria prioritários na cozinha</label>
+          <div class="check-group">
+            <label><input type="checkbox"> Armários altos</label>
+            <label><input type="checkbox"> Armários baixos</label>
+            <label><input type="checkbox"> Despensa</label>
+            <label><input type="checkbox"> Bancada / ilha</label>
+            <label><input type="checkbox"> Cantinho do café integrado</label>
+          </div>
+        </div>
+        <div class="field col-span-2">
+          <label>Observações livres sobre a cozinha</label>
+          <textarea placeholder="Algo específico que queira garantir..."></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- ÁREA DE SERVIÇO -->
+    <div class="ambiente-bloco">
+      <div class="ambiente-titulo">Área de Serviço / Lavanderia</div>
+      <div class="grid-2">
+        <div class="field col-span-2">
+          <label>Máquina de lavar — qual preferem?</label>
+          <div class="radio-group">
+            <label><input type="radio" name="maquina"> Lava e seca</label>
+            <label><input type="radio" name="maquina"> Máquina tradicional (separado secadora)</label>
+            <label><input type="radio" name="maquina"> Só máquina de lavar</label>
+          </div>
+        </div>
+        <div class="field">
+          <label>Varal?</label>
+          <div class="radio-group">
+            <label><input type="radio" name="varal"> Fixo</label>
+            <label><input type="radio" name="varal"> Retrátil</label>
+            <label><input type="radio" name="varal"> Não precisa</label>
+          </div>
+        </div>
+        <div class="field">
+          <label>Espaço para utensílios de limpeza (balde, vassoura, rodo, aspirador)?</label>
+          <div class="radio-group">
+            <label><input type="radio" name="limpeza"> Sim</label>
+            <label><input type="radio" name="limpeza"> Não</label>
+          </div>
+        </div>
+        <div class="field col-span-2">
+          <label>Observações livres sobre a área de serviço</label>
+          <textarea placeholder="Algo específico que queira garantir..."></textarea>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- 6. INVESTIMENTO -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon">
+        <svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+      </div>
+      <h2 class="section-title">Investimento</h2>
+    </div>
+
+    <div class="nota">As informações de budget nos ajudam a desenhar soluções realistas e apresentar fornecedores alinhados à sua realidade. Todas as informações são tratadas com total sigilo.</div>
+
+    <div class="grid-2">
+      <div class="field">
+        <label>Budget estimado para execução (obra + mobiliário) <span class="obrig">*</span></label>
+        <select>
+          <option value="">Selecione uma faixa</option>
+          <option>Até R$ 50.000</option>
+          <option>R$ 50.000 – R$ 100.000</option>
+          <option>R$ 100.000 – R$ 200.000</option>
+          <option>R$ 200.000 – R$ 400.000</option>
+          <option>R$ 400.000 – R$ 700.000</option>
+          <option>Acima de R$ 700.000</option>
+          <option>Ainda não definido — quero orientação</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Prazo desejado para conclusão do projeto</label>
+        <select>
+          <option value="">Selecione</option>
+          <option>Urgente — até 3 meses</option>
+          <option>3 a 6 meses</option>
+          <option>6 a 12 meses</option>
+          <option>Acima de 12 meses</option>
+          <option>Sem prazo definido</option>
+        </select>
+      </div>
+      <div class="field col-span-2">
+        <label>O investimento será pago à vista, parcelado ou financiado?</label>
+        <div class="radio-group">
+          <label><input type="radio" name="pagamento"> À vista</label>
+          <label><input type="radio" name="pagamento"> Parcelado (cartão ou boleto)</label>
+          <label><input type="radio" name="pagamento"> Financiamento bancário</label>
+          <label><input type="radio" name="pagamento"> Ainda não definido</label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- 7. EXPECTATIVAS -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon">
+        <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+      </div>
+      <h2 class="section-title">Expectativas e Comunicação</h2>
+    </div>
+
+    <div class="grid-2">
+      <div class="field col-span-2">
+        <label>O que é mais importante para você em um projeto de interiores?</label>
+        <div class="check-group">
+          <label><input type="checkbox"> Resultado estético impecável</label>
+          <label><input type="checkbox"> Praticidade e funcionalidade</label>
+          <label><input type="checkbox"> Cumprir prazos rigorosamente</label>
+          <label><input type="checkbox"> Transparência no processo</label>
+          <label><input type="checkbox"> Parceria e co-criação</label>
+          <label><input type="checkbox"> Controle total do orçamento</label>
+          <label><input type="checkbox"> Sustentabilidade das escolhas</label>
+        </div>
+      </div>
+
+      <div class="field col-span-2">
+        <label>Como prefere se comunicar durante o projeto?</label>
+        <div class="radio-group">
+          <label><input type="radio" name="comunicacao"> WhatsApp</label>
+          <label><input type="radio" name="comunicacao"> E-mail</label>
+          <label><input type="radio" name="comunicacao"> Reuniões presenciais</label>
+          <label><input type="radio" name="comunicacao"> Videochamadas</label>
+          <label><input type="radio" name="comunicacao"> Combinado de canais</label>
+        </div>
+      </div>
+
+      <div class="field col-span-2">
+        <label>Qual nível de envolvimento deseja ter nas decisões?</label>
+        <div class="scale-row">
+          <label><input type="radio" name="envolvimento" value="1">1<br><small style="font-size:10px;opacity:.6">Mínimo</small></label>
+          <label><input type="radio" name="envolvimento" value="2">2</label>
+          <label><input type="radio" name="envolvimento" value="3">3</label>
+          <label><input type="radio" name="envolvimento" value="4">4</label>
+          <label><input type="radio" name="envolvimento" value="5">5<br><small style="font-size:10px;opacity:.6">Máximo</small></label>
+        </div>
+      </div>
+
+      <div class="field col-span-2">
+        <label>Já trabalhou com arquiteto ou designer de interiores antes?</label>
+        <div class="radio-group">
+          <label><input type="radio" name="experiencia"> Não, é a primeira vez</label>
+          <label><input type="radio" name="experiencia"> Sim — boa experiência</label>
+          <label><input type="radio" name="experiencia"> Sim — experiência com pontos a melhorar</label>
+        </div>
+      </div>
+
+      <div class="field col-span-2">
+        <label>O que você NÃO quer repetir de experiências anteriores (ou o que teme)?</label>
+        <textarea placeholder="Seja honesto(a). Isso nos ajuda a garantir uma experiência melhor para você."></textarea>
+      </div>
+
+      <div class="field col-span-2">
+        <label>Alguma informação adicional que considera importante compartilhar?</label>
+        <textarea placeholder="Contexto familiar, datas importantes, observações livres..."></textarea>
+      </div>
+    </div>
+  </div>
+
+  <!-- SUBMIT -->
+  <div class="submit-area">
+    <p>Ao clicar em enviar, suas respostas serão formatadas e enviadas diretamente para o nosso WhatsApp.<br>Suas informações são confidenciais e usadas exclusivamente para o desenvolvimento do seu projeto.</p>
+    <button type="button" id="btn-enviar" onclick="enviarBriefing()">Enviar briefing pelo WhatsApp</button>
+  </div>
+
+</form>
+
+<!-- MODAL DE SUCESSO -->
+<div id="modal-overlay" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.6); z-index:1000; align-items:center; justify-content:center;">
+  <div style="background:#fff; border-radius:8px; max-width:460px; width:90%; padding:48px 40px; text-align:center; position:relative;">
+    <div style="width:56px;height:56px;border-radius:50%;background:#481210;display:flex;align-items:center;justify-content:center;margin:0 auto 24px;">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FCA814" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+    </div>
+    <h2 style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:28px;color:#481210;margin-bottom:12px;">Briefing enviado!</h2>
+    <p style="font-size:14px;color:#44271F;line-height:1.7;margin-bottom:32px;">O WhatsApp vai abrir com todas as suas respostas formatadas. É só enviar a mensagem para a equipe Arkoos.<br><br>Entraremos em contato em até 48h para agendar uma conversa inicial.</p>
+    <button onclick="document.getElementById('modal-overlay').style.display='none'" style="font-family:'DM Sans',sans-serif;font-size:12px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:#fff;background:#481210;border:none;border-radius:4px;padding:14px 36px;cursor:pointer;">Fechar</button>
+  </div>
+</div>
+
+<div class="form-footer">
+  arkoos arquitetura e interiores &nbsp;&middot;&nbsp; Rio de Janeiro &nbsp;&middot;&nbsp; &copy; 2025
+</div>
+
+</div><!-- /form-wrapper -->
+
+<script>
+function inicializarScrollReveal() {
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var elementos = Array.from(document.querySelectorAll('.hero, .section, .ambiente-bloco, .divider, .submit-area, .form-footer'));
+
+  if (!elementos.length) return;
+
+  document.body.classList.add('reveal-enabled');
+
+  elementos.forEach(function(el, index) {
+    el.classList.add('scroll-reveal');
+    el.style.setProperty('--reveal-delay', Math.min(index * 35, 180) + 'ms');
+  });
+
+  if (reduceMotion || !('IntersectionObserver' in window)) {
+    elementos.forEach(function(el) { el.classList.add('is-visible'); });
+    return;
+  }
+
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        return;
+      }
+
+      var estaAbaixoDaTela = entry.boundingClientRect.top > window.innerHeight * 0.9;
+      if (estaAbaixoDaTela) entry.target.classList.remove('is-visible');
+    });
+  }, {
+    threshold: 0.12,
+    rootMargin: '0px 0px -8% 0px'
+  });
+
+  elementos.forEach(function(el) { observer.observe(el); });
+
+  function tratarRetornoAoTopo() {
+    if (window.scrollY > 24) return;
+
+    elementos.forEach(function(el) {
+      if (el.classList.contains('hero')) {
+        el.classList.add('is-visible');
+        return;
+      }
+
+      var rect = el.getBoundingClientRect();
+      if (rect.top > window.innerHeight * 0.7) el.classList.remove('is-visible');
+    });
+  }
+
+  tratarRetornoAoTopo();
+  window.addEventListener('scroll', tratarRetornoAoTopo, { passive: true });
+}
+
+document.addEventListener('DOMContentLoaded', inicializarScrollReveal);
+
+function enviarBriefing() {
+  var WHATSAPP = '5521973108788';
+  var form = document.querySelector('form');
+  var linhas = [];
+
+  function getChecks(groupEl) {
+    var checked = groupEl.querySelectorAll('input[type="checkbox"]:checked');
+    if (!checked.length) return '\u2014';
+    return Array.from(checked).map(function(c){ return c.parentElement.textContent.trim(); }).join(', ');
+  }
+
+  function coletarCampos(container, saida, ignorarAmbientes) {
+    var fields = container.querySelectorAll('.field');
+    fields.forEach(function(field) {
+      if (ignorarAmbientes && field.closest('.ambiente-bloco')) return;
+      var label = field.querySelector('label:first-child');
+      if (!label) return;
+      var labelTxt = (label.childNodes[0] && label.childNodes[0].textContent) ? label.childNodes[0].textContent.trim() : label.textContent.trim();
+      if (!labelTxt || labelTxt.length < 2) return;
+
+      var input = field.querySelector('input[type="text"], input[type="email"], input[type="tel"], input[type="number"], input[type="url"]');
+      if (input) { saida.push('\u2022 ' + labelTxt + ': ' + (input.value.trim() || '\u2014')); return; }
+
+      var select = field.querySelector('select');
+      if (select) { saida.push('\u2022 ' + labelTxt + ': ' + (select.value || '\u2014')); return; }
+
+      var ta = field.querySelector('textarea');
+      if (ta) { saida.push('\u2022 ' + labelTxt + ': ' + (ta.value.trim() || '\u2014')); return; }
+
+      var radioGroup = field.querySelector('.radio-group');
+      if (radioGroup) {
+        var rChecked = radioGroup.querySelector('input:checked');
+        saida.push('\u2022 ' + labelTxt + ': ' + (rChecked ? rChecked.parentElement.textContent.trim() : '\u2014'));
+        return;
+      }
+
+      var scaleRow = field.querySelector('.scale-row');
+      if (scaleRow) {
+        var sChecked = scaleRow.querySelector('input:checked');
+        saida.push('\u2022 ' + labelTxt + ': ' + (sChecked ? sChecked.value : '\u2014'));
+        return;
+      }
+
+      var checkGroup = field.querySelector('.check-group');
+      if (checkGroup) { saida.push('\u2022 ' + labelTxt + ': ' + getChecks(checkGroup)); return; }
+    });
+  }
+
+  var sections = form.querySelectorAll('.section');
+  sections.forEach(function(section) {
+    var titulo = section.querySelector('.section-title');
+    if (titulo) linhas.push('\n*' + titulo.textContent.trim().toUpperCase() + '*');
+
+    var ambientes = section.querySelectorAll('.ambiente-bloco');
+    ambientes.forEach(function(amb) {
+      var ambTit = amb.querySelector('.ambiente-titulo');
+      if (ambTit) linhas.push('\n\u25b8 *' + ambTit.textContent.trim() + '*');
+      coletarCampos(amb, linhas, false);
+    });
+
+    coletarCampos(section, linhas, true);
+  });
+
+  var cabecalho = '\uD83C\uDFE0 *BRIEFING ARKOOS \u2014 NOVO CLIENTE*\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501';
+  var rodape = '\n\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n_Enviado pelo formul\u00e1rio de briefing Arkoos_';
+
+  var mensagem = cabecalho + linhas.join('\n') + rodape;
+  var url = 'https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent(mensagem);
+
+  window.open(url, '_blank');
+  var modal = document.getElementById('modal-overlay');
+  modal.style.display = 'flex';
+}
+</script>
+
+</body>
+</html>
