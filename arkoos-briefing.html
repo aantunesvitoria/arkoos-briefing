@@ -1414,6 +1414,8 @@
 function inicializarScrollReveal() {
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var elementos = Array.from(document.querySelectorAll('.hero, .section, .ambiente-bloco, .divider, .submit-area, .form-footer'));
+  var ticking = false;
+  var ultimoScrollY = window.scrollY || window.pageYOffset || 0;
 
   if (!elementos.length) return;
 
@@ -1429,39 +1431,63 @@ function inicializarScrollReveal() {
     return;
   }
 
+  function atualizarReveals() {
+    var viewportH = window.innerHeight || document.documentElement.clientHeight;
+    var scrollY = window.scrollY || window.pageYOffset || 0;
+    var voltandoParaCima = scrollY < ultimoScrollY;
+
+    elementos.forEach(function(el) {
+      var rect = el.getBoundingClientRect();
+      var entrouNaAreaDeReveal = rect.top <= viewportH * 0.88 && rect.bottom >= 0;
+      var estaBemAbaixoDaTela = rect.top > viewportH * 1.05;
+
+      if (entrouNaAreaDeReveal) {
+        el.classList.add('is-visible');
+      } else if (voltandoParaCima && estaBemAbaixoDaTela) {
+        el.classList.remove('is-visible');
+      }
+    });
+
+    if (scrollY <= 24) {
+      elementos.forEach(function(el) {
+        if (el.classList.contains('hero')) {
+          el.classList.add('is-visible');
+          return;
+        }
+
+        var rect = el.getBoundingClientRect();
+        if (rect.top > viewportH * 0.72) el.classList.remove('is-visible');
+      });
+    }
+
+    ultimoScrollY = scrollY;
+    ticking = false;
+  }
+
+  function agendarAtualizacaoReveal() {
+    if (ticking) return;
+    ticking = true;
+    window.requestAnimationFrame(atualizarReveals);
+  }
+
   var observer = new IntersectionObserver(function(entries) {
     entries.forEach(function(entry) {
       if (entry.isIntersecting) {
         entry.target.classList.add('is-visible');
-        return;
+      } else {
+        agendarAtualizacaoReveal();
       }
-
-      var estaAbaixoDaTela = entry.boundingClientRect.top > window.innerHeight * 0.9;
-      if (estaAbaixoDaTela) entry.target.classList.remove('is-visible');
     });
   }, {
-    threshold: 0.12,
-    rootMargin: '0px 0px -8% 0px'
+    threshold: 0.01,
+    rootMargin: '0px 0px -12% 0px'
   });
 
   elementos.forEach(function(el) { observer.observe(el); });
-
-  function tratarRetornoAoTopo() {
-    if (window.scrollY > 24) return;
-
-    elementos.forEach(function(el) {
-      if (el.classList.contains('hero')) {
-        el.classList.add('is-visible');
-        return;
-      }
-
-      var rect = el.getBoundingClientRect();
-      if (rect.top > window.innerHeight * 0.7) el.classList.remove('is-visible');
-    });
-  }
-
-  tratarRetornoAoTopo();
-  window.addEventListener('scroll', tratarRetornoAoTopo, { passive: true });
+  atualizarReveals();
+  window.addEventListener('scroll', agendarAtualizacaoReveal, { passive: true });
+  window.addEventListener('resize', agendarAtualizacaoReveal);
+  window.addEventListener('pageshow', agendarAtualizacaoReveal);
 }
 
 document.addEventListener('DOMContentLoaded', inicializarScrollReveal);
